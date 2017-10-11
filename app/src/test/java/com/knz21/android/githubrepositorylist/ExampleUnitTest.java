@@ -1,4 +1,4 @@
-package com.knz21.githubrepositorylist;
+package com.knz21.android.githubrepositorylist;
 
 import org.junit.Test;
 

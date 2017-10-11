@@ -1,4 +1,4 @@
-package com.knz21.githubrepositorylist;
+package com.knz21.android.githubrepositorylist;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.knz21.githubrepositorylist", appContext.getPackageName());
+        assertEquals("com.knz21.android.githubrepositorylist", appContext.getPackageName());
     }
 }
