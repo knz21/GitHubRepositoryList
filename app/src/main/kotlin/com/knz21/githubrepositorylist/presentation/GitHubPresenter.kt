@@ -4,7 +4,11 @@ import javax.inject.Inject
 
 class GitHubPresenter @Inject constructor(private val contract: Contract) {
 
-    interface Contract {
+    fun getRepositories() {
 
+    }
+
+    interface Contract {
+        fun showRepositories()
     }
 }
