@@ -1,5 +1,6 @@
 package com.knz21.githubrepositorylist.di
 
+import com.knz21.githubrepositorylist.api.GitHubService
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -14,21 +15,23 @@ import javax.inject.Singleton
 class ApplicationModule {
 
     @Provides
-    fun providesOkHttp(): OkHttpClient {
-        return OkHttpClient.Builder()
-                .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC })
-                .build()
-    }
+    fun providesOkHttp(): OkHttpClient =
+            OkHttpClient.Builder()
+                    .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC })
+                    .build()
+
 
     @Provides
-    fun provideRetrofit(oktHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
-                .client(oktHttpClient)
-                .baseUrl("https://api.github.com")
-                .addConverterFactory(MoshiConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
-    }
+    fun provideRetrofit(oktHttpClient: OkHttpClient): Retrofit =
+            Retrofit.Builder()
+                    .client(oktHttpClient)
+                    .baseUrl("https://api.github.com")
+                    .addConverterFactory(MoshiConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build()
+
+    @Provides
+    fun provideGitHubService(retrofit: Retrofit): GitHubService = retrofit.create(GitHubService::class.java)
 }
 
 @Singleton

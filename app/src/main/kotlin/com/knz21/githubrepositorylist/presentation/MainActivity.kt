@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import com.knz21.githubrepositorylist.R
 import com.knz21.githubrepositorylist.databinding.ActivityMainBinding
 import com.knz21.githubrepositorylist.di.MainModule
+import com.knz21.githubrepositorylist.domain.entity.GitHubRepository
 import com.knz21.githubrepositorylist.view.adapter.RepositoryListAdapter
 import javax.inject.Inject
 
@@ -21,7 +22,9 @@ class MainActivity : AppCompatActivity(), GitHubPresenter.Contract {
         binding.repositoryList.adapter = adapter
     }
 
-    override fun showRepositories() {
-
+    override fun showRepositories(repositories: List<GitHubRepository>) {
+        adapter.update(repositories)
     }
+
+    override fun getUserName(): String = binding.userNameEdit.text.toString()
 }
