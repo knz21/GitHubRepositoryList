@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity(), GitHubPresenter.Contract {
         (application as App).component.plus(MainModule(this)).inject(this)
         binding.presenter = presenter
         binding.repositoryList.adapter = adapter
+        presenter.getRepositories(true)
     }
 
     override fun showRepositories(repositories: List<GitHubRepository>) {

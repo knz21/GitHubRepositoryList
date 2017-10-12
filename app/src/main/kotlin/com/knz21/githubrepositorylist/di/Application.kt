@@ -1,6 +1,9 @@
 package com.knz21.githubrepositorylist.di
 
+import com.github.gfx.android.orma.AccessThreadConstraint
 import com.knz21.githubrepositorylist.api.GitHubService
+import com.knz21.githubrepositorylist.domain.entity.OrmaDatabase
+import com.knz21.githubrepositorylist.presentation.App
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -12,7 +15,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
-class ApplicationModule {
+class ApplicationModule(private val applicationContext: App) {
 
     @Provides
     fun providesOkHttp(): OkHttpClient =
@@ -32,6 +35,16 @@ class ApplicationModule {
 
     @Provides
     fun provideGitHubService(retrofit: Retrofit): GitHubService = retrofit.create(GitHubService::class.java)
+
+    @Provides
+    fun provideOrma(): OrmaHolder =
+            OrmaHolder(OrmaDatabase.builder(applicationContext)
+                    .writeOnMainThread(AccessThreadConstraint.FATAL)
+                    .readOnMainThread(AccessThreadConstraint.FATAL)
+                    .trace(true)
+                    .build())
+
+    class OrmaHolder(val db: OrmaDatabase)
 }
 
 @Singleton

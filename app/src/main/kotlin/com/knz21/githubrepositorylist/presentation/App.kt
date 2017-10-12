@@ -8,7 +8,7 @@ import com.knz21.githubrepositorylist.di.DaggerApplicationComponent
 class App : Application() {
     val component: ApplicationComponent by lazy {
         DaggerApplicationComponent.builder()
-                .applicationModule(ApplicationModule())
+                .applicationModule(ApplicationModule(this))
                 .build()
     }
 }
