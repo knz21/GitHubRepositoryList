@@ -4,7 +4,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.knz21.android.githubrepositorylist"
         minSdkVersion 23
@@ -33,9 +33,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    def supportLibraryVersion = '25.3.1'
+    def supportLibraryVersion = '25.4.0'
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
-    kapt 'com.android.databinding:compiler:2.3.3'
+    kapt 'com.android.databinding:compiler:3.0.0'
     def daggerVersion = '2.11'
     compile "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
@@ -53,4 +53,5 @@ dependencies {
 }
 repositories {
     mavenCentral()
+    google()
 }
